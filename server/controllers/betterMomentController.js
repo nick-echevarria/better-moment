@@ -31,7 +31,7 @@ betterMomentController.getAllSuggestions = (req, res, next) => {
     })
     .catch((err) => {
       next({
-        log: 'Express error handler caught error in getSuggestions',
+        log: 'Express error handler caught error in getAllSuggestions',
         status: 500,
         message: { err: 'An error occurred' },
       });
@@ -39,8 +39,8 @@ betterMomentController.getAllSuggestions = (req, res, next) => {
 };
 
 betterMomentController.getUserSuggestions = async (req, res, next) => {
-  const { id } = req.query.id;
-  const queryString = `SELECT suggestions FROM suggestions WHERE users_id == ${id}`;
+  const { id } = req.query;
+  const queryString = `SELECT * FROM suggestions WHERE user_id::bigint = ${user_id};`;
 
   try {
     const result = await db.query(queryString);
@@ -55,11 +55,15 @@ betterMomentController.getUserSuggestions = async (req, res, next) => {
   }
 };
 
-betterMomentController.addSuggestion = async (req, res, next) => {
-  const { id } = req.query.id;
-  const user_id = id ? id : null;
+betterMomentController.addSuggestion = (req, res, next) => {
+  console.log('REQBODY', req.body);
+  console.log('REQQUERY', req.query);
+
+  const { user_id } = req.query;
+  // const user_id = id ? id : null;
 
   const { suggestion_title, suggestion_content } = req.body;
+
   if (!suggestion_title || !suggestion_content) {
     return next({
       log: 'Express error handler caught error in addSuggestion',
@@ -68,19 +72,17 @@ betterMomentController.addSuggestion = async (req, res, next) => {
     });
   }
 
-  const queryString = `INSERT INTO suggestions(suggestion_title, suggestion_content, user_id) VALUES ('${suggestion_title}', '${suggestion_content}', '${user_id}');`;
+  const queryString = `INSERT INTO suggestions(suggestion_title, suggestion_content, user_id) VALUES ('${suggestion_title}', '${suggestion_content}', ${user_id});`;
 
-  try {
-    const result = await db.query(queryString);
-    res.locals.userSuggestion = result.response.rows;
-    next();
-  } catch (err) {
-    next({
-      log: 'Express error handler caught error in addSuggestion',
-      status: 500,
-      message: { err: 'An error occurred in adding a suggestion' },
-    });
-  }
+  db.query(queryString)
+    .then(() => next())
+    .catch((error) =>
+      next({
+        log: 'Express error handler caught error in addSuggestion',
+        status: 500,
+        message: { err: error.message },
+      })
+    );
 };
 
 module.exports = betterMomentController;

@@ -21,10 +21,10 @@ app.use(express.static(path.resolve(__dirname, '../client/assets')));
 /**
  * define route handlers
  */
-app.use('/', dbRouter); 
+app.use('/database', dbRouter); 
 
 // catch-all route handler for any requests to an unknown route
-app.use((req, res) => res.status(404).send('This page doesn\' exist!'));
+app.use((req, res) => res.status(404).send('This page doesn\'t exist!'));
 
 app.use((err, req, res, next) => {
   const defaultErr = {

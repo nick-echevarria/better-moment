@@ -8,13 +8,17 @@ router.get('/', betterMomentController.getUsers, (req, res) =>
   res.status(200).json(res.locals.users)
 );
 
-router.get('/:userId', (req, res) =>
-  res.status(200).json(res.locals.characters)
+router.get(
+  '/suggestion',
+  betterMomentController.getAllSuggestions,
+  (req, res) => res.status(200).json(res.locals.users)
 );
 
-router.post('/:userId', (req, res) => { 
-    res.status(200).json(res.locals.suggestions)
-})
+router.get('/:userId', (req, res) => res.status(200).json(res.locals.user));
 
+router.post('/', betterMomentController.addSuggestion, (req, res) => {
+  console.log('INSIDE POST REQ');
+  res.status(200).json(res.locals.suggestion);
+});
 
 module.exports = router;
