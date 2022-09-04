@@ -6,6 +6,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'bundle.js',
+    publicPath: '/',
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -44,9 +45,10 @@ module.exports = {
     ],
   },
   devServer: {
+    historyApiFallback: true, 
     static: {
       directory: path.join(__dirname, 'build'),
-      publicPath: '/',
+      publicPath: '/build',
     },
     proxy: {
       '/database/**': {
@@ -58,8 +60,14 @@ module.exports = {
         secure: false,
       },
     },
+    // proxy: {
+    // 	// redirect localhost:3000* requests to localhost:8080*
+    // 	'/database': 'http://localhost:3000',
+    // 	'/database/home': 'http://localhost:3000',
+    // },
     // compress: true,
     host: 'localhost',
     port: 8080,
+    historyApiFallback: true,
   },
 };

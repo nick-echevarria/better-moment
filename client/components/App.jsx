@@ -4,8 +4,9 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
 import Header from './Header.jsx';
 import Landing from './Landing.jsx';
-import Dashboard from './Dashboard.jsx';
+import Home from './Home.jsx';
 import Footer from './Footer.jsx';
+import SurrenderFlow from './SurrenderFlow.jsx';
 
 import '../scss/application.scss';
 
@@ -21,7 +22,9 @@ class App extends Component {
         <Header />
 
         <Routes>
-          <Route path='/dashboard' element={<Dashboard />} />
+          <Route path='/home' element={<Home />} />
+          <Route path='/letitout' element={<SurrenderFlow />} />
+          {/* <Route exact path='/login' element={<Login />} /> */}
           <Route exact path='/' element={<Landing />} />
         </Routes>
 

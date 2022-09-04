@@ -4,7 +4,7 @@ $prompt: 'Prompt', sans-serif;
 
 $betterBlue: #004aad;
 $betterGradient: linear-gradient(135deg, #0093e9 0%, #80d0c7 100%);
-$gradientBlue: #0093e9; 
+$gradientBlue: #0093e9;
 
 * {
   margin: 0;
@@ -18,7 +18,12 @@ $gradientBlue: #0093e9;
   // outline: 1px red solid;
 }
 
-a { 
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: rgb(235, 235, 235);
+  opacity: 1; /* Firefox */
+}
+
+a {
   text-decoration: none;
   color: white;
 }
@@ -74,9 +79,9 @@ body {
       font-size: 1.5rem;
       align-items: center;
 
-      #better-moment-logo { 
-        height: 4rem; 
-        width: 4rem; 
+      #better-moment-logo {
+        height: 4rem;
+        width: 4rem;
       }
 
       #better {
@@ -84,7 +89,7 @@ body {
       }
     }
 
-    #sign-in { 
+    #sign-in {
       margin: 1rem;
       color: white;
     }
@@ -94,20 +99,20 @@ body {
     grid-area: main;
     height: 100%;
     width: 100%;
-    display: flex; 
-    justify-content: center; 
+    display: flex;
+    justify-content: center;
     align-items: center;
     flex-direction: column;
 
-    span { 
-      color: white; 
-      font-size: 2.5rem; 
-      font-weight: 600; 
+    span {
+      color: white;
+      font-size: 2.5rem;
+      font-weight: 600;
     }
 
-    #landing-cta { 
+    #landing-cta {
       margin: 1rem;
-      padding: 1rem; 
+      padding: 1rem;
       border-radius: 1rem;
       background-color: $betterBlue;
       color: white;
@@ -116,14 +121,36 @@ body {
     }
   }
 
-  #dashboard-container {
+  #home-container {
     grid-area: main;
     height: 100%;
     width: 100%;
-    display: flex; 
-    justify-content: center; 
+    display: flex;
+    justify-content: center;
     align-items: center;
     flex-direction: column;
+  }
+
+  #surrender-container {
+    grid-area: main;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    textarea {
+      height: 75%;
+      width: 75%;
+      outline: none;
+      background-color: transparent;
+      opacity: 80%;
+      border: 1px white solid;
+      border-radius: 10px;
+      padding: 1rem; 
+      caret-color: white;
+    }
   }
 
   #footer-container {
