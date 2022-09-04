@@ -5,28 +5,32 @@ const betterMomentController = require('../controllers/betterMomentController');
 const router = express.Router();
 
 // USER CRUD //
-router.get('/:userId', (req, res) => res.status(200).json(res.locals.user));
+router.get('/', betterMomentController.getUsers, (req, res) =>
+  res.status(200).json(res.locals.users)
+);
 
 // SUGGESTIONS CRUD //
-router.get(
-  '/suggestion',
-  betterMomentController.getAllSuggestions,
-  (req, res) => res.status(200).json(res.locals.suggestions)
+router.get('/', betterMomentController.getAllSuggestions, (req, res) =>
+  res.status(200).json(res.locals.suggestions)
+);
+
+router.get('/:user', betterMomentController.getUserSuggestions, (req, res) =>
+  res.status(200).json(res.locals.userSuggestions)
 );
 
 router.post('/', betterMomentController.addSuggestion, (req, res) => {
   console.log('SUGGEST POST FIN');
-  res.status(200).json(res.locals.suggestion);
+  res.sendStatus(200);
 });
 
 router.put('/', betterMomentController.updateSuggestion, (req, res) => {
   console.log('SUGGEST UPDATE FIN');
-  res.status(200).json(res.locals.suggestion);
+  res.sendStatus(200);
 });
 
 router.delete('/', betterMomentController.deleteSuggestion, (req, res) => {
   console.log('SUGGEST DELETE FIN');
-  res.status(200).json(res.locals.suggestion);
+  res.sendStatus(200);
 });
 
 module.exports = router;

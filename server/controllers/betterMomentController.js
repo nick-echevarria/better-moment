@@ -46,7 +46,7 @@ betterMomentController.updateUser = async (req, res, next) => {
 
   try {
     const query = await db.query(queryString);
-    console.log("UPDATE USER 49", query)
+    console.log('UPDATE USER 49', query);
     return next();
   } catch (err) {
     return next({
@@ -64,7 +64,7 @@ betterMomentController.deleteUser = async (req, res, next) => {
 
   try {
     const query = await db.query(queryString);
-    console.log("DELETE USER 67", query)
+    console.log('DELETE USER 67', query);
     return next();
   } catch (err) {
     return next({
@@ -83,7 +83,7 @@ betterMomentController.addSuggestion = async (req, res, next) => {
 
   try {
     const query = await db.query(queryString);
-    console.log("ADD SUGGESTION 87", query)
+    console.log('ADD SUGGESTION 87', query);
     return next();
   } catch (err) {
     return next({
@@ -94,7 +94,7 @@ betterMomentController.addSuggestion = async (req, res, next) => {
   }
 };
 
-betterMomentController.getAllSuggestions = asycn (req, res, next) => {
+betterMomentController.getAllSuggestions = async (req, res, next) => {
   const queryString = 'SELECT * FROM suggestions';
 
   try {
@@ -114,7 +114,7 @@ betterMomentController.getAllSuggestions = asycn (req, res, next) => {
 };
 
 betterMomentController.getUserSuggestions = async (req, res, next) => {
-  const { user_id } = req.body;
+  const { user_id } = req.params;
   const queryString = `SELECT * FROM suggestions WHERE user_id::bigint = ${user_id};`;
 
   try {
@@ -143,7 +143,7 @@ betterMomentController.updateSuggestion = async (req, res, next) => {
     console.log('PUT UPDATE SUGGESTION 143', query);
     const data = query.json();
     console.log('PUT UPDATE SUGGESTION 145', data);
-    res.locals.updatedSuggestion = data.rows;
+    // res.locals.updatedSuggestion = data.rows;
     return next();
   } catch (err) {
     next({

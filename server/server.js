@@ -1,11 +1,12 @@
 const express = require('express');
 const path = require('path');
 const app = express();
+const betterMomentRouter = require('./router/betterMomentRouter');
 
 const PORT = 3000;
 
 //parsing json content
-app.use(express.json()); 
+app.use(express.json());
 
 app.use(express.static(path.join(__dirname, '../client/assets')));
 
@@ -14,8 +15,8 @@ app.use(express.static(path.join(__dirname, '../client/assets')));
 //   res.send(200).send(path.join(__dirname, 'client', 'index.js'));
 // });
 
-// router to handle data frontend requests 
-app.use('/internal', internalRouter);
+// router to handle data frontend requests
+app.use('/api', betterMomentRouter);
 
 // catch-all error (404)
 app.use('/', (req, res) => {

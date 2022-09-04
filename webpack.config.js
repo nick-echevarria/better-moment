@@ -45,13 +45,13 @@ module.exports = {
     ],
   },
   devServer: {
-    historyApiFallback: true, 
+    historyApiFallback: true,
     static: {
       directory: path.join(__dirname, 'build'),
       publicPath: '/build',
     },
     proxy: {
-      '/database/**': {
+      '/api/**': {
         target: 'http://localhost:3000',
         secure: false,
       },
@@ -60,12 +60,6 @@ module.exports = {
         secure: false,
       },
     },
-    // proxy: {
-    // 	// redirect localhost:3000* requests to localhost:8080*
-    // 	'/database': 'http://localhost:3000',
-    // 	'/database/home': 'http://localhost:3000',
-    // },
-    // compress: true,
     host: 'localhost',
     port: 8080,
     historyApiFallback: true,
