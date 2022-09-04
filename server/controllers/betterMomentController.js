@@ -1,3 +1,4 @@
+const e = require('express');
 const db = require('../models/betterMomentModels');
 
 const betterMomentController = {};
@@ -6,16 +7,17 @@ const betterMomentController = {};
 betterMomentController.addUser = async (req, res, next) => {
   const { username, password } = req.body;
 
-  const queryString = `INSERT INTO suggestions(username, password, streak) VALUES ('${username}', '${password}', 0});`;
+  const queryString = `INSERT INTO users(username, password, streak) VALUES ('${username}', '${password}', 0);`;
 
   try {
     const query = await db.query(queryString);
+    console.log('ADD USER 14', query);
     return next();
   } catch (err) {
     return next({
       log: 'Express error handler caught error in addUser',
       status: 500,
-      message: { err: error.message },
+      message: { err: err.message },
     });
   }
 };
@@ -24,11 +26,9 @@ betterMomentController.getUsers = async (req, res, next) => {
   const queryString = 'SELECT * FROM users;';
 
   try {
-    const query = await db.query(queryString);
-    console.log('GET USERS 27', query);
-    const data = query.json();
-    console.log('GET USERS 29', data);
+    const data = await db.query(queryString);
     res.locals.users = data.rows;
+    console.log('GET USERS 29', res.locals.users);
     return next();
   } catch (err) {
     return next({
@@ -52,7 +52,7 @@ betterMomentController.updateUser = async (req, res, next) => {
     return next({
       log: 'Express error handler caught error in updateUser',
       status: 500,
-      message: { err: error.message },
+      message: { err: err.message },
     });
   }
 };
@@ -70,7 +70,7 @@ betterMomentController.deleteUser = async (req, res, next) => {
     return next({
       log: 'Express error handler caught error in deleteUSer',
       status: 500,
-      message: { err: error.message },
+      message: { err: err.message },
     });
   }
 };
@@ -89,7 +89,7 @@ betterMomentController.addSuggestion = async (req, res, next) => {
     return next({
       log: 'Express error handler caught error in addSuggenstion',
       status: 500,
-      message: { err: error.message },
+      message: { err: err.message },
     });
   }
 };
@@ -108,7 +108,7 @@ betterMomentController.getAllSuggestions = async (req, res, next) => {
     return next({
       log: 'Express error handler caught error in getAllSuggestions',
       status: 500,
-      message: { err: error.message },
+      message: { err: err.message },
     });
   }
 };
@@ -128,7 +128,7 @@ betterMomentController.getUserSuggestions = async (req, res, next) => {
     next({
       log: 'Express error handler caught error in getUserSuggestions',
       status: 500,
-      message: { err: 'An error occurred' },
+      message: { err: err.message },
     });
   }
 };
@@ -149,7 +149,7 @@ betterMomentController.updateSuggestion = async (req, res, next) => {
     next({
       log: 'Express error handler caught error in updateSuggestion',
       status: 500,
-      message: { err: 'An error occurred' },
+      message: { err: err.message },
     });
   }
 };
@@ -167,7 +167,7 @@ betterMomentController.deleteSuggestion = async (req, res, next) => {
     next({
       log: 'Express error handler caught error in deleteSuggestion',
       status: 500,
-      message: { err: 'An error occurred' },
+      message: { err: err.message },
     });
   }
 };

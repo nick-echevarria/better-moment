@@ -9,13 +9,18 @@ router.get('/', betterMomentController.getUsers, (req, res) =>
   res.status(200).json(res.locals.users)
 );
 
+router.get('/:user', betterMomentController.getUserSuggestions, (req, res) =>
+  res.status(200).json(res.locals.userSuggestions)
+);
+
+router.post('/', betterMomentController.addUser, (req, res) => {
+  console.log('USER POST FIN');
+  res.sendStatus(200);
+});
+
 // SUGGESTIONS CRUD //
 router.get('/', betterMomentController.getAllSuggestions, (req, res) =>
   res.status(200).json(res.locals.suggestions)
-);
-
-router.get('/:user', betterMomentController.getUserSuggestions, (req, res) =>
-  res.status(200).json(res.locals.userSuggestions)
 );
 
 router.post('/', betterMomentController.addSuggestion, (req, res) => {

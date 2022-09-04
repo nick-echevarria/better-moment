@@ -2,17 +2,21 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: path.join(__dirname, 'client', 'index.js'),
+  entry: './client/index.js',
+  mode: 'development',
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'bundle.js',
     publicPath: '/',
+    clean: true,
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'src', 'index.html'),
+      filename: './index.html',
     }),
   ],
+  devtool: 'eval-source-map',
   mode: process.env.NODE_ENV,
   module: {
     rules: [
@@ -47,21 +51,13 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
     static: {
-      directory: path.join(__dirname, 'build'),
-      publicPath: '/build',
+      directory: path.join(__dirname, './dist'),
     },
+    port: 8000,
     proxy: {
-      '/api/**': {
-        target: 'http://localhost:3000',
-        secure: false,
-      },
-      '/assets/**': {
-        target: 'http://localhost:3000',
-        secure: false,
-      },
+      '/api': 'http://localhost:3000',
+      '/assets': 'http://localhost:3000',
     },
-    host: 'localhost',
-    port: 8080,
-    historyApiFallback: true,
   },
+  // host: 'localhost'
 };
