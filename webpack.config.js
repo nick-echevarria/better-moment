@@ -3,7 +3,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: './client/index.js',
-  mode: 'development',
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'bundle.js',
@@ -12,8 +11,8 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, 'src', 'index.html'),
-      filename: './index.html',
+      template: './src/index.html',
+      // filename: './index.html',
     }),
   ],
   devtool: 'eval-source-map',
@@ -55,8 +54,8 @@ module.exports = {
     },
     port: 8000,
     proxy: {
-      '/api': 'http://localhost:3000',
-      '/assets': 'http://localhost:3000',
+      '/api/**': 'http://localhost:3000',
+      '/assets/**': 'http://localhost:3000',
     },
   },
   // host: 'localhost'

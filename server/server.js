@@ -12,8 +12,13 @@ app.use(express.static(path.join(__dirname, '../client/assets')));
 
 // router to serve index.js - PROD ONLY
 // app.get('/', (req, res) => {
-//   res.send(200).send(path.join(__dirname, 'client', 'index.js'));
+//   res.status(200).send(path.join(__dirname, '../src/index.html'));
 // });
+
+// route handler to respond with main app
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../src/index.html'));
+});
 
 // router to handle data frontend requests
 app.use('/api', betterMomentRouter);
