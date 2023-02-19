@@ -1,14 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import SurrenderFlow from './SurrenderFlow.jsx';
+import SurrenderInput from './SurrenderInput.jsx';
 
 const Landing = () => {
   return (
     <div id='landing-container'>
-      <span>Experiencing a tough moment?</span>
+      <span>Experiencing tough emotions?</span>
       <button id='landing-cta'>
-        <Link to='/letitout' element={<SurrenderFlow />}>
-          Surrender It
+        <Link to='/surrender/start' element={<SurrenderInput />}>
+          Let Them Go!
         </Link>
       </button>
     </div>

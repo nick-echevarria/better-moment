@@ -18,7 +18,8 @@ $gradientBlue: #0093e9;
   // outline: 1px red solid;
 }
 
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: rgb(235, 235, 235);
   opacity: 1; /* Firefox */
 }
@@ -121,7 +122,7 @@ body {
     }
   }
 
-  #home-container {
+  #dashboard-container {
     grid-area: main;
     height: 100%;
     width: 100%;
@@ -148,7 +149,7 @@ body {
       opacity: 80%;
       border: 1px white solid;
       border-radius: 10px;
-      padding: 1rem; 
+      padding: 1rem;
       caret-color: white;
     }
   }

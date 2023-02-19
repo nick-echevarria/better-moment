@@ -1,29 +1,25 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 import Header from './Header.jsx';
 import Landing from './Landing.jsx';
-import Home from './Home.jsx';
+import Dashboard from './Header.jsx';
 import Footer from './Footer.jsx';
-import SurrenderFlow from './SurrenderFlow.jsx';
+import SurrenderInput from './SurrenderInput.jsx';
+import ReturnHabit from './HabitInput.jsx';
 
 import '../scss/application.scss';
 
-class App extends Component {
-  state = {
-    signedIn: false,
-    userSuggestions: {},
-  };
-
-  render() {
+const App = () => { 
     return (
       <div id='app-container'>
         <Header />
 
         <Routes>
-          <Route path='/home' element={<Home />} />
-          <Route path='/letitout' element={<SurrenderFlow />} />
+          <Route path='/dashboard' element={<Dashboard />} />
+          <Route path='/surrender/start' element={<SurrenderInput />} />
+          <Route path='/return-habit' element={<ReturnHabit />} />
           {/* <Route exact path='/login' element={<Login />} /> */}
           <Route exact path='/' element={<Landing />} />
         </Routes>
@@ -31,7 +27,6 @@ class App extends Component {
         <Footer />
       </div>
     );
-  }
-}
+  };
 
 export default App;
