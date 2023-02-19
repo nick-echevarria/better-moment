@@ -5,7 +5,7 @@ const SurrenderInput = () => {
   const navigate = useNavigate();
 
   const submitSurrender = () => {
-    navigate('/return-habit');
+    navigate('/habit-input');
   };
 
   return (

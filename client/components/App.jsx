@@ -7,26 +7,28 @@ import Landing from './Landing.jsx';
 import Dashboard from './Header.jsx';
 import Footer from './Footer.jsx';
 import SurrenderInput from './SurrenderInput.jsx';
-import ReturnHabit from './HabitInput.jsx';
+import HabitInput from './HabitInput.jsx';
+import HabitSelect from './HabitSelect.jsx';
 
 import '../scss/application.scss';
 
-const App = () => { 
-    return (
-      <div id='app-container'>
-        <Header />
+const App = () => {
+  return (
+    <div id='app-container'>
+      <Header />
 
-        <Routes>
-          <Route path='/dashboard' element={<Dashboard />} />
-          <Route path='/surrender/start' element={<SurrenderInput />} />
-          <Route path='/return-habit' element={<ReturnHabit />} />
-          {/* <Route exact path='/login' element={<Login />} /> */}
-          <Route exact path='/' element={<Landing />} />
-        </Routes>
+      <Routes>
+        <Route path='/dashboard' element={<Dashboard />} />
+        <Route path='/surrender/start' element={<SurrenderInput />} />
+        <Route path='/habit-input' element={<HabitInput />} />
+        <Route path='/habit-select' element={<HabitSelect />} />
+        {/* <Route exact path='/login' element={<Login />} /> */}
+        <Route exact path='/' element={<Landing />} />
+      </Routes>
 
-        <Footer />
-      </div>
-    );
-  };
+      <Footer />
+    </div>
+  );
+};
 
 export default App;
