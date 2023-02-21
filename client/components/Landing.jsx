@@ -7,7 +7,7 @@ const Landing = () => {
     <div id='landing-container'>
       <span>Experiencing tough emotions?</span>
       <button id='landing-cta'>
-        <Link to='/surrender/start' element={<SurrenderInput />}>
+        <Link to='/surrender' element={<SurrenderInput />}>
           Let Them Go!
         </Link>
       </button>

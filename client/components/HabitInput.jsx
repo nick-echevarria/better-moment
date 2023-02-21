@@ -17,14 +17,14 @@ const HabitInput = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log(name, value);
 
     setHabitFormFields({ ...habitFormFields, [name]: value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    navigate('/habit-select', { state: habitFormFields });
+    const habitArray = Object.values(habitFormFields);
+    navigate('/habit-select', { state: habitArray });
   };
 
   return (

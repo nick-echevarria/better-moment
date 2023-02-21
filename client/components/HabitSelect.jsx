@@ -1,22 +1,24 @@
-import React, { useState, useEffect, useLocation } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 const HabitSelect = () => {
   const location = useLocation();
-  const [habitList, setHabitList] = useState();
-  const [selectedHabit, setSelectedHabit] = useState('');
+  const [habitList, setHabitList] = useState([]);
+  const [selectedHabit, setSelectedHabit] = useState([]);
 
-  useEffect(async () => {
-    if (!location.state) {
-      const savedUserHabits = await getHabits();
-      setHabitList(savedUserHabits);
-    } else setHabitList(location.state);
-    
-    startHabitSelect();
+  useEffect(() => {
+    selectHabit();
   }, []);
 
-  const startHabitSelect = () => {
-    const selectedHabit = startRandomizerAnimation();
-    setSelectedHabit(selectedHabit);
+  const selectHabit = () => {
+    if (location.state) {
+      const localHabitList = location.state;
+      const localSelectedHabit =
+        localHabitList[
+          Math.floor(Math.random() * (localHabitList.length - 1 - 0 + 1) + 0)
+        ];
+      setSelectedHabit(localSelectedHabit);
+    } else return;
   };
 
   return (

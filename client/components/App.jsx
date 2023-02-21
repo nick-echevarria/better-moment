@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { Routes, Route } from 'react-router-dom';
 
@@ -19,7 +19,7 @@ const App = () => {
 
       <Routes>
         <Route path='/dashboard' element={<Dashboard />} />
-        <Route path='/surrender/start' element={<SurrenderInput />} />
+        <Route path='/surrender' element={<SurrenderInput />} />
         <Route path='/habit-input' element={<HabitInput />} />
         <Route path='/habit-select' element={<HabitSelect />} />
         {/* <Route exact path='/login' element={<Login />} /> */}
